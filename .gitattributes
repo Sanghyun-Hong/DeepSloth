@@ -1,0 +1,4 @@
+last filter=lfs diff=lfs merge=lfs -text
+parameters_last filter=lfs diff=lfs merge=lfs -text
+untrained filter=lfs diff=lfs merge=lfs -text
+parameters_untrained filter=lfs diff=lfs merge=lfs -text
