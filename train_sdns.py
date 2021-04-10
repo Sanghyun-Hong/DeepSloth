@@ -195,7 +195,7 @@ def train_sdns(networks, storedir, sdn=True, ic_only=False, custom_train_loader=
         # because of the above line, the dictionary containing hyperparameters of the CNN will contain
         # the parameter called 'doNormalization' with value False set in create_vgg16bn in network_architectures
         sdn_params = models.load_params(storedir, each_network)
-        sdn_params = models.load_network_parameters(sdn_params['task'], sdn_params['network_type'])
+        sdn_params = models.load_cnn_parameters(sdn_params['task'], sdn_params['network_type'])
         sdn_model, _ = utils.cnn_to_sdn(storedir, cnn_to_tune, sdn_params, load_epoch)
         models.save_model(sdn_model, each_network, sdn_params, storedir, epoch=0)
 
@@ -218,7 +218,7 @@ def adv_train_sdns( \
         # because of the above line, the dictionary containing hyperparameters of the CNN will contain
         # the parameter called 'doNormalization' with value False set in create_vgg16bn in network_architectures
         sdn_params = models.load_params(storedir, each_network)
-        sdn_params = models.load_network_parameters(sdn_params['task'], sdn_params['network_type'])
+        sdn_params = models.load_cnn_parameters(sdn_params['task'], sdn_params['network_type'])
         sdn_model, _ = utils.cnn_to_sdn(storedir, cnn_to_tune, sdn_params, load_epoch)
         models.save_model(sdn_model, each_network, sdn_params, storedir, epoch=0)
 
