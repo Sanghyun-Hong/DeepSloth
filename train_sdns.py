@@ -266,10 +266,10 @@ def advtrain_model( \
             dataset, storedir, True, attack, max_iter, epsilon, eps_step, 'cs'))
     elif netname == 'resnet56':
         utils.extend_lists(cnns, sdns, models.create_resnet56_adv( \
-            dataset, storedir, attack, max_iter, epsilon, eps_step, 'cs'))
+            dataset, storedir, True, attack, max_iter, epsilon, eps_step, 'cs'))
     elif netname == 'mobilenet':
         utils.extend_lists(cnns, sdns, models.create_mobilenet_adv( \
-            dataset, storedir, attack, max_iter, epsilon, eps_step, 'cs'))
+            dataset, storedir, True, attack, max_iter, epsilon, eps_step, 'cs'))
     else:
         assert False, ('Error: undefined network - {}'.format(netname))
 
