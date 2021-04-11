@@ -143,6 +143,8 @@ def adv_train(networks, storedir, \
 
             # :: IC-only flag to the model
             network.ic_only = True
+        else:
+            network.ic_only = False
 
         # : set the optimizer parameters
         optimization_params = (learning_rate, weight_decay, momentum)
