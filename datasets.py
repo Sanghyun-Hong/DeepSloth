@@ -97,12 +97,12 @@ class CIFAR10:
         self.aug_train_loader = torch.utils.data.DataLoader(self.aug_trainset, batch_size=batch_size, shuffle=True)
 
         self.trainset =  datasets.CIFAR10(root=_cifar10, train=True, download=dw, transform=self.normalized)
-        self.trainset = torch.utils.data.Subset(self.trainset, np.random.randint(low=0, high=self.num_train, size=1000) # ionut: sample the dataset for faster training during my tests
+        self.trainset = torch.utils.data.Subset(self.trainset, np.random.randint(low=0, high=self.num_train, size=1000)) # ionut: sample the dataset for faster training during my tests
         print('[CIFAR10] Subsampling trainset...')
         self.train_loader = torch.utils.data.DataLoader(self.trainset, batch_size=batch_size, shuffle=False)
 
         self.testset =  datasets.CIFAR10(root=_cifar10, train=False, download=dw, transform=self.normalized)
-        self.testset = torch.utils.data.Subset(self.testset, np.random.randint(low=0, high=self.num_test, size=100) # ionut: sample the dataset for faster inference during my tests
+        self.testset = torch.utils.data.Subset(self.testset, np.random.randint(low=0, high=self.num_test, size=100)) # ionut: sample the dataset for faster inference during my tests
         print('[CIFAR10] Subsampling testset...')
         self.test_loader = torch.utils.data.DataLoader(self.testset, batch_size=batch_size, shuffle=False)
 
