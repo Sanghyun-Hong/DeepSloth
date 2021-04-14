@@ -421,7 +421,7 @@ def tiny_imagenet_params():
 
 def load_lr_params(model_params):
     # vanilla models
-    model_params['epochs'] = 100
+    model_params['epochs'] = 10 # ionut: original 100
     model_params['learning_rate'] = 0.01
     model_params['gammas'] = [0.1, 0.1]
     model_params['momentum'] = 0.9
@@ -437,8 +437,8 @@ def load_lr_params(model_params):
     # SDN models (ic-only cases)
     model_params['ic_only'] = {}
     model_params['ic_only']['learning_rate'] = 0.001
-    model_params['ic_only']['epochs'] = 25
-    model_params['ic_only']['milestones'] = [15]
+    model_params['ic_only']['epochs'] = 5 # ionut: original 25
+    model_params['ic_only']['milestones'] = [5] # ionut: original [15]
     model_params['ic_only']['gammas'] = [0.1]
     # done.
 
@@ -464,11 +464,13 @@ def save_model(network, netname, parameters, storedir, epoch=-1):
 
     # store the pytorch model
     torch.save(network.state_dict(), path)
+    print(f'[Model] The model was saved to {path}')
 
     # store the parameters
     if parameters is not None:
         with open(params_path, 'wb') as outfile:
             pickle.dump(parameters, outfile, pickle.HIGHEST_PROTOCOL)
+        print(f'[Model] The hyper-parameters were saved to {params_path}')
     # done.
 
 def load_params(netpath, netname, epoch=0):
