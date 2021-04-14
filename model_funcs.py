@@ -24,6 +24,7 @@ import torchvision.utils as vutils
 import datasets, models, utils
 import attacks.ours_linf as ours_linf
 from attacks.PGDs import PGD, PGD_avg, PGD_max
+from profiler import profile_sdn
 
 
 # ------------------------------------------------------------------------------
@@ -352,7 +353,18 @@ def sdn_advtrain( \
     attack, iteration, eps_step, eps_max, device='cpu'):
     augment = model.augment_training
     metrics = {'epoch_times':[], 'test_top1_acc':[], 'test_top5_acc':[], 'train_top1_acc':[], 'train_top5_acc':[], 'lrs':[]}
-    max_coeffs = np.array([0.15, 0.3, 0.45, 0.6, 0.75, 0.9]) # max tau_i --- C_i values
+
+    """
+        Ionut's Comment:
+            The old max_coeffs array that contains 6 values is from the SDN paper where the SDNs had 6 internal classifiers.
+            Each value in the max_coeffs array is an approximation of the percentage GFLOPs of the hidden layer where the IC is attached to.
+            However, in the context of DeepSloth, where the SDN attaches an IC at EVERY HIDDEN LAYER, those 6 values won't be enough.
+            As a solution, the 6-values array would be replaced by the percentage of the GFLOPs obtained by the profile_sdn method
+    """
+    # max_coeffs = np.array([0.15, 0.3, 0.45, 0.6, 0.75, 0.9]) # max tau_i --- C_i values
+    ops_dict, _ = profile_sdn(model, model.input_size, device) # ops_dict: key=ic_number, value=ops of the layer where ic is attached to
+    ops = np.array([ops_dict[k] for k in ops_dict])
+    max_coeffs = ops.cumsum() / ops.sum()
 
     if model.ic_only:
         print('sdn will be converted from a pre-trained CNN...  (The IC-only training)')
