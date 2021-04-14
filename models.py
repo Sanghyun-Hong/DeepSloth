@@ -467,7 +467,7 @@ def save_model(network, netname, parameters, storedir, epoch=-1):
     if parameters is not None:
         with open(params_path, 'wb') as outfile:
             pickle.dump(parameters, outfile, pickle.HIGHEST_PROTOCOL)
-    print(f'[SAVE] The model was saved to {storedir}')
+    print(f'[SAVE] The model was saved to {netpath}')
     # done.
 
 def load_params(netpath, netname, epoch=0):
