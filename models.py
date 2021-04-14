@@ -25,7 +25,6 @@ def save_networks(network, parameters, storedir, savetype):
     sdn_name = network+'_sdn'  # example: cifar10_vgg16bn_sdn
 
     if 'c' in savetype:
-        print(f' [network] save the vanilla model to {storedir}')
         parameters['architecture'] = 'cnn'
         parameters['base_model']   = cnn_name
         nettype = parameters['network_type']
@@ -46,7 +45,6 @@ def save_networks(network, parameters, storedir, savetype):
         save_model(model, cnn_name, parameters, storedir, epoch=0)
 
     if 's' in savetype:
-        print(f' [network] save the SDN model to {storedir}')
         parameters['architecture'] = 'sdn'
         parameters['base_model']   = sdn_name
         nettype = parameters['network_type']
@@ -469,6 +467,7 @@ def save_model(network, netname, parameters, storedir, epoch=-1):
     if parameters is not None:
         with open(params_path, 'wb') as outfile:
             pickle.dump(parameters, outfile, pickle.HIGHEST_PROTOCOL)
+    print(f'[SAVE] The model was saved to {storedir}')
     # done.
 
 def load_params(netpath, netname, epoch=0):
