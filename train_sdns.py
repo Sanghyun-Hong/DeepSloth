@@ -1,7 +1,7 @@
 """
     (Adversarially) Train multi-exit architectures
 """
-import os, json
+import os, json, sys
 import argparse
 
 import platform
@@ -324,6 +324,9 @@ def train_cnns_sdns_w_custom_loaders(dataset, model_path, device='cpu'):
     Main (for training)
 """
 if __name__ == '__main__':
+    print('---------------------------------------')
+    print('Program arguments:', ' '.join(sys.argv))
+
     parser = argparse.ArgumentParser( \
         description='Train SDN networks.')
 
@@ -385,4 +388,6 @@ if __name__ == '__main__':
             attack=args.attacks, max_iter=args.maxiter, epsilon=args.epsilon, eps_step=args.epsstep, \
             vanilla=args.vanilla, ic_only=args.ic_only, device=use_device)
         print ('[Train] done, training an AT model')
+    print('Program arguments:', ' '.join(sys.argv))
+    print('---------------------------------------')
     # done.
