@@ -94,12 +94,12 @@ class CIFAR10:
         self.normalized = transforms.Compose(preprocList) # contains normalization depending on doNormalization parameter
 
         self.aug_trainset = datasets.CIFAR10(root=_cifar10, train=True, download=dw, transform=self.augmented)
-        self.aug_trainset = torch.utils.data.Subset(self.aug_trainset, np.random.randint(low=0, high=self.num_train, size=1000))  # ionut: sample the dataset for faster training during my tests
+        self.aug_trainset = torch.utils.data.Subset(self.aug_trainset, np.random.randint(low=0, high=self.num_train, size=100))  # ionut: sample the dataset for faster training during my tests
         print('[CIFAR10] Subsampling aug_trainset...')
         self.aug_train_loader = torch.utils.data.DataLoader(self.aug_trainset, batch_size=batch_size, shuffle=True)
 
         self.trainset = datasets.CIFAR10(root=_cifar10, train=True, download=dw, transform=self.normalized)
-        self.trainset = torch.utils.data.Subset(self.trainset, np.random.randint(low=0, high=self.num_train, size=1000)) # ionut: sample the dataset for faster training during my tests
+        self.trainset = torch.utils.data.Subset(self.trainset, np.random.randint(low=0, high=self.num_train, size=100)) # ionut: sample the dataset for faster training during my tests
         print('[CIFAR10] Subsampling trainset...')
         self.train_loader = torch.utils.data.DataLoader(self.trainset, batch_size=batch_size, shuffle=False)
 
