@@ -325,6 +325,7 @@ def train_cnns_sdns_w_custom_loaders(dataset, model_path, device='cpu'):
 """
 if __name__ == '__main__':
     print('---------------------------------------')
+    print('Date and time:', datetime.now())
     print('Program arguments:', ' '.join(sys.argv))
 
     parser = argparse.ArgumentParser( \
@@ -388,6 +389,8 @@ if __name__ == '__main__':
             attack=args.attacks, max_iter=args.maxiter, epsilon=args.epsilon, eps_step=args.epsstep, \
             vanilla=args.vanilla, ic_only=args.ic_only, device=use_device)
         print ('[Train] done, training an AT model')
+
+    print('Date and time:', datetime.now())
     print('Program arguments:', ' '.join(sys.argv))
     print('---------------------------------------')
     # done.
