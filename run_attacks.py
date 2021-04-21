@@ -334,7 +334,7 @@ def run_attack(args, use_cuda=False):
         exit()
 
     else:
-        assert False, ('Error: unsupported attack - {}'.format(_attacks))
+        assert False, ('Error: unsupported attack - {}'.format(args.attacks))
     # done.
 
 def run_analysis(args, use_cuda=False):
@@ -379,7 +379,7 @@ def run_analysis(args, use_cuda=False):
 
                 # > save some samples
                 samples_fname = os.path.join(analyze_dir, \
-                    '{}_samples.png'.format(eachfile.split('/')[-1].replace('.pickle', '')))
+                    '{}_samples.png'.format(eachfile.split(os.sep)[-1].replace('.pickle', '')))
                 samples_size  = 8
                 samples_data  = torch.from_numpy(attack_data[:samples_size])
                 vutils.save_image(samples_data, samples_fname)
@@ -392,7 +392,7 @@ def run_analysis(args, use_cuda=False):
 
                 # > analyze
                 analysis_file = os.path.join(analyze_dir, \
-                    '{}_{}_analysis'.format(eachfile.split('/')[-1].replace('.pickle', ''), eachrad))
+                    '{}_{}_analysis'.format(eachfile.split(os.sep)[-1].replace('.pickle', ''), eachrad))
                 plot_data, clean_auc, sloth_auc, clean_acc, sloth_acc = \
                     compute_delay_metric_w_loader( \
                         'models/{}', args.dataset, args.network, \
@@ -437,7 +437,7 @@ def run_analysis(args, use_cuda=False):
 
                 # > save some samples
                 samples_fname = os.path.join(analyze_dir, \
-                    '{}_samples.png'.format(eachfile.split('/')[-1].replace('.pickle', '')))
+                    '{}_samples.png'.format(eachfile.split(os.sep)[-1].replace('.pickle', '')))
                 samples_size  = 8
                 samples_data  = torch.from_numpy(attack_data[:samples_size])
                 vutils.save_image(samples_data, samples_fname)
@@ -450,7 +450,7 @@ def run_analysis(args, use_cuda=False):
 
                 # > analyze
                 analysis_file = os.path.join(analyze_dir, \
-                    '{}_{}_analysis'.format(eachfile.split('/')[-1].replace('.pickle', ''), eachrad))
+                    '{}_{}_analysis'.format(eachfile.split(os.sep)[-1].replace('.pickle', ''), eachrad))
                 plot_data, clean_auc, sloth_auc, clean_acc, sloth_acc = \
                     compute_delay_metric_w_loader( \
                         'models/{}', args.dataset, args.network, \
@@ -495,7 +495,7 @@ def run_analysis(args, use_cuda=False):
 
                 # > save some samples
                 samples_fname = os.path.join(analyze_dir, \
-                    '{}_samples.png'.format(eachfile.split('/')[-1].replace('.pickle', '')))
+                    '{}_samples.png'.format(eachfile.split(os.sep)[-1].replace('.pickle', '')))
                 samples_size  = 8
                 samples_data  = torch.from_numpy(attack_data[:samples_size])
                 vutils.save_image(samples_data, samples_fname)
@@ -508,7 +508,7 @@ def run_analysis(args, use_cuda=False):
 
                 # > analyze
                 analysis_file = os.path.join(analyze_dir, \
-                    '{}_{}_analysis'.format(eachfile.split('/')[-1].replace('.pickle', ''), eachrad))
+                    '{}_{}_analysis'.format(eachfile.split(os.sep)[-1].replace('.pickle', ''), eachrad))
                 plot_data, clean_auc, sloth_auc, clean_acc, sloth_acc = \
                     compute_delay_metric_w_loader( \
                         'models/{}', args.dataset, args.network, \
@@ -561,7 +561,7 @@ def run_analysis(args, use_cuda=False):
 
                 # >> save some samples
                 samples_fname = os.path.join(analyze_dir, \
-                    '{}_samples.png'.format(eachfile.split('/')[-1].replace('.pickle', '')))
+                    '{}_samples.png'.format(eachfile.split(os.sep)[-1].replace('.pickle', '')))
                 samples_size  = 8
                 samples_data  = torch.from_numpy(attack_data[:samples_size])
                 vutils.save_image(samples_data, samples_fname)
@@ -574,7 +574,7 @@ def run_analysis(args, use_cuda=False):
 
                 # >> analyze
                 analysis_file = os.path.join(analyze_dir, \
-                    '{}_{}_analysis'.format(eachfile.split('/')[-1].replace('.pickle', ''), eachrad))
+                    '{}_{}_analysis'.format(eachfile.split(os.sep)[-1].replace('.pickle', ''), eachrad))
                 plot_data, clean_auc, sloth_auc, clean_acc, sloth_acc = \
                     compute_delay_metric_w_loader( \
                         'models/{}', args.dataset, args.network, \
@@ -647,5 +647,5 @@ if __name__ == "__main__":
     elif 'analysis' == args.runmode:
         run_analysis(args, use_cuda=set_cuda)
     else:
-        assert False, ('Error: undefined run-mode - {}'.format(_runmode))
+        assert False, ('Error: undefined run-mode - {}'.format(args.runmode))
     # done.
