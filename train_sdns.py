@@ -357,6 +357,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     print (json.dumps(vars(args), indent=2))
 
+    if not args.ic_only:
+        print('Error: we do not currently support training SDN from scratch, please refer this functionality in the repository https://github.com/yigitcankaya/Shallow-Deep-Networks')
+        exit()
+
     # run the analysis
     use_device = utils.available_device()
     print ('[Train] use the device: {}'.format(use_device))
