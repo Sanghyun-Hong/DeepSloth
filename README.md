@@ -3,7 +3,7 @@
 This repository contains the code for reproducing the results in our paper:
 
 - [A Panda? No, It's a Sloth: Slowdown Attacks on Adaptive Multi-Exit Neural Network Inference](https://arxiv.org/abs/2010.02432) **[ICLR 2021: Spotlight]**
-- **[Sanghyun Hong](https://secure-ai.systems)**<sup>*</sup>, Yiğitcan Kaya<sup>*</sup>, Ionuţ-Vlad Modoranu, Tudor Dumitraş. (Equal contributions)
+- **[Sanghyun Hong](https://secure-ai.systems)**, **Yiğitcan Kaya**, Ionuţ-Vlad Modoranu, Tudor Dumitraş. (Bold: Equal contributions)
 
 ---
 
